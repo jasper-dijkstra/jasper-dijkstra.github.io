@@ -2,6 +2,8 @@
 
 Personal site. Plain HTML and CSS, no build step, no dependencies.
 
+Visit the page at: https://jasper-dijkstra.github.io/
+
 ## Local preview
 
 ```bash
