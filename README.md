@@ -12,7 +12,14 @@ python3 -m http.server -d . 8000   # then open http://localhost:8000
 
 ## Add a project card
 
-Copy an `<li>` inside `<ul class="cards">` in `index.html`. Drop the `<a>` when the repo is private.
+Copy an `<li>` inside `<ul class="cards">` in `work.html`. Drop the `<a>` when the repo is private.
+
+## Add a photo album
+
+1. Copy `photography/ameland.html` to `photography/slug.html`, replace the title and placeholders with
+   real `<img>` tags (upload the image files to the repo first, e.g. under `photography/slug/`).
+2. Add a tile to `<ul class="album-tiles">` in `photography/index.html`, and optionally to the
+   photography section in `index.html`.
 
 ## Add a post
 
