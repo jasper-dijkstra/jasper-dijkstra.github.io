@@ -1,13 +1,29 @@
----
-layout: default
----
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Photography by Jasper Dijkstra</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="description" content="Fotografie — Geospatial data engineer and hobby photographer." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<link rel="stylesheet" href="/assets/css/main.min.css" />
+<noscript><link rel="stylesheet" href="/assets/css/noscript.min.css" /></noscript>
+<link rel="stylesheet" href="/assets/css/custom.min.css" />
+<link rel="stylesheet" href="/assets/css/fontawesome-all.min.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic">
+</head>
+<body class="is-preload">
 
 <!-- Wrapper -->
 <div id="wrapper">
 
     <!-- Header -->
     <header id="header">
-        <h1><a href="index.html"><strong>{{ site.header.title }}</strong> {{ site.header.subtitle }}</a></h1>
+        <h1><a href="index.html"><strong>Fotografie</strong> by Jasper Dijkstra</a></h1>
         <nav>
             <ul>
                 <li><a href="#footer">About&nbsp;&nbsp;<i class="fa fa-info-circle text-fg"></i></a></li>
@@ -16,19 +32,31 @@ layout: default
     </header>
 
     <!-- Main -->
-    <div id="main" data-exif='{{ site.exif }}'>
-        {% for image in site.static_files %}
-        {% if image.path contains 'fulls' %}
+    <!-- Tiles are plain HTML. Regenerate them with the snippet in README.md after adding photos. -->
+    <div id="main" data-exif='[{"tag": "Model", "icon": "fa fa-camera-retro"}, {"tag": "FNumber", "icon": "far fa-dot-circle"}, {"tag": "ExposureTime", "icon": "far fa-clock"}, {"tag": "ISOSpeedRatings", "icon": "fa fa-info-circle"}]'>
+        <!-- tiles:start -->
         <article class="thumb">
-            <a href="{{ site.baseurl }}{{ site.image_fulls_loc }}/{{ image.name }}" class="image">
-                <img src="{{ site.baseurl }}{{ site.image_thumbs_loc }}/{{ image.name }}"
-                     alt="Photograph by {{ site.author }}"
-                     data-name="{{ image.name }}"/></a>
-            <!--<h2></h2>
-            <p></p>-->
+            <a href="/images/fulls/IMG_1360.JPG" class="image"><img src="/images/thumbs/IMG_1360.JPG" alt="Photograph by Jasper Dijkstra" data-name="IMG_1360.JPG" /></a>
         </article>
-        {% endif %}
-        {% endfor %}
+        <article class="thumb">
+            <a href="/images/fulls/IMG_2337.jpeg" class="image"><img src="/images/thumbs/IMG_2337.jpeg" alt="Photograph by Jasper Dijkstra" data-name="IMG_2337.jpeg" /></a>
+        </article>
+        <article class="thumb">
+            <a href="/images/fulls/IMG_2618.JPG" class="image"><img src="/images/thumbs/IMG_2618.JPG" alt="Photograph by Jasper Dijkstra" data-name="IMG_2618.JPG" /></a>
+        </article>
+        <article class="thumb">
+            <a href="/images/fulls/IMG_2689.JPG" class="image"><img src="/images/thumbs/IMG_2689.JPG" alt="Photograph by Jasper Dijkstra" data-name="IMG_2689.JPG" /></a>
+        </article>
+        <article class="thumb">
+            <a href="/images/fulls/IMG_3218.JPG" class="image"><img src="/images/thumbs/IMG_3218.JPG" alt="Photograph by Jasper Dijkstra" data-name="IMG_3218.JPG" /></a>
+        </article>
+        <article class="thumb">
+            <a href="/images/fulls/IMG_3347.jpeg" class="image"><img src="/images/thumbs/IMG_3347.jpeg" alt="Photograph by Jasper Dijkstra" data-name="IMG_3347.jpeg" /></a>
+        </article>
+        <article class="thumb">
+            <a href="/images/fulls/IMG_4767.jpeg" class="image"><img src="/images/thumbs/IMG_4767.jpeg" alt="Photograph by Jasper Dijkstra" data-name="IMG_4767.jpeg" /></a>
+        </article>
+        <!-- tiles:end -->
     </div>
 
     <!-- Footer -->
@@ -36,61 +64,33 @@ layout: default
         <div class="inner">
             <div>
                 <section>
-                    <h2>{{ site.footer.name }}</h2>
-                    <p>{{ site.footer.bio }}</p>
-                    <p>{{ site.footer.github }}</p>
+                    <h2>Jasper Dijkstra</h2>
+                    <p>Geospatial data engineer and hobby photographer.</p>
+                    <p>Built on the <a href="https://github.com/rampatra/photography">photography</a> Jekyll template by Ram Patra, used under GPL-3.0.</p>
                 </section>
                 <section>
                     <h2>Follow me on ...</h2>
                     <ul class="icons">
-                        {% if site.social_urls.facebook %}
-                            <li>
-                                <a href="{{ site.social_urls.facebook }}" class="icon brands fa-facebook">
-                                    <span class="label">Facebook</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if site.social_urls.twitter %}
-                            <li>
-                                <a href="{{ site.social_urls.twitter }}" class="icon brands fa-twitter">
-                                    <span class="label">Twitter</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if site.social_urls.instagram %}
-                            <li>
-                                <a href="{{ site.social_urls.instagram }}" class="icon brands fa-instagram">
-                                    <span class="label">Instagram</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if site.social_urls.dribbble %}
-                            <li>
-                                <a href="{{ site.social_urls.dribbble }}" class="icon brands fa-dribbble">
-                                    <span class="label">Dribbble</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if site.social_urls.github %}
-                            <li>
-                                <a href="{{ site.social_urls.github }}" class="icon brands fa-github">
-                                    <span class="label">GitHub</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if site.social_urls.linkedin %}
-                            <li>
-                                <a href="{{ site.social_urls.linkedin }}" class="icon brands fa-linkedin">
-                                    <span class="label">LinkedIn</span>
-                                </a>
-                            </li>
-                        {% endif %}
+                        <li><a href="https://github.com/jasper-dijkstra" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                        <li><a href="https://www.linkedin.com/in/jasper-dijkstra-/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
                     </ul>
                 </section>
                 <p class="copyright">
-                    &copy; {{ site.author }}. Design: {{ site.web_design }}
+                    &copy; Jasper Dijkstra. Design: AJ
                 </p>
             </div>
         </div>
     </footer>
 </div>
+
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js" defer></script>
+<script src="/assets/js/jquery.poptrox.modified.min.js" defer></script>
+<script src="/assets/js/browser.min.js" defer></script>
+<script src="/assets/js/breakpoints.min.js" defer></script>
+<script src="/assets/js/util.min.js" defer></script>
+<script src="/assets/js/exif.min.js" defer></script>
+<script src="/assets/js/main.min.js" defer></script>
+
+</body>
+</html>
