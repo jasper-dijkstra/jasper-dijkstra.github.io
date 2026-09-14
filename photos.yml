@@ -18,7 +18,7 @@ photos:
     objective: ""
     aperture: "f/6.3"
     shutter_speed: "1/200 s"
-    iso: ""
+    iso: "ISO 100"
   - thumbnail: /images/thumbs/IMG_2618.JPG
     photo: /images/fulls/IMG_2618.JPG
     tags: [wadden]
@@ -79,3 +79,53 @@ photos:
     aperture: "f5.0"
     shutter_speed: "1/160 s"
     iso: ""
+  - thumbnail: /images/thumbs/IMG_4531.jpeg
+    photo: /images/fulls/IMG_4531.jpeg
+    tags: [wadden, abstract]
+    description: "Gelaagd strand"
+    location: "Buren, Ameland"
+    camera: "Canon EOS 250D"
+    objective: " "
+    aperture: "f/"
+    shutter_speed: "1/"
+    iso: ""
+  - thumbnail: /images/thumbs/3_IMG_0030.jpg
+    photo: /images/fulls/3_IMG_0030.jpg
+    tags: [urban]
+    description: "Neues Rathaus"
+    location: "München, Duitsland"
+    camera: "Canon EOS 60D"
+    objective: "35mm"
+    aperture: "f/10"
+    shutter_speed: "1/250 s"
+    iso: "ISO 100"
+  - thumbnail: /images/thumbs/15_IMG_2974.jpg
+    photo: /images/fulls/15_IMG_2974.jpg
+    tags: [landscape]
+    description: "Rorbuer - traditionele Noorse seizoenshuisjes voor vissers"
+    location: "Nusfjord, Lofoten, Noorwegen"
+    camera: "Canon EOS 60D"
+    objective: "24mm"
+    aperture: "f/5.0"
+    shutter_speed: "1/50 s"
+    iso: "ISO 100"
+  - thumbnail: /images/thumbs/IMG_2987.JPG
+    photo: /images/fulls/IMG_2987.JPG
+    tags: [landscape]
+    description: "Zonsondergang tussen Senja en Andøya"
+    location: "Andefjorden, Noorwegen"
+    camera: "Canon EOS 250D"
+    objective: "72mm"
+    aperture: "f/7.1"
+    shutter_speed: "1/500 s"
+    iso: "ISO 100"
+  - thumbnail: /images/thumbs/IMG_3778.jpeg
+    photo: /images/fulls/IMG_3778.jpeg
+    tags: [urban]
+    description: "London"
+    location: "Londen, Verenigd Koninkrijk"
+    camera: "Canon EOS 250D"
+    objective: "27mm"
+    aperture: "f/5.6"
+    shutter_speed: "1/250 s"
+    iso: "ISO 100"
