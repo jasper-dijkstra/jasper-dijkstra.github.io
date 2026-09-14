@@ -129,3 +129,13 @@ photos:
     aperture: "f/5.6"
     shutter_speed: "1/250 s"
     iso: "ISO 100"
+  - thumbnail: /images/thumbs/IMG_4538.JPG
+    photo: /images/fulls/IMG_4538.JPG
+    tags: [abstract]
+    description: "karton"
+    location: ""
+    camera: "Canon EOS 250D"
+    objective: "50mm"
+    aperture: "f/22"
+    shutter_speed: "1.6 s"
+    iso: "ISO 100"
