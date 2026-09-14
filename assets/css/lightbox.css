@@ -1,0 +1,30 @@
+.poptrox-popup {
+  background: #fff;
+}
+
+#main .thumb:after {
+  display: none;
+}
+
+.poptrox-popup:before {
+  display: none;
+}
+
+.poptrox-popup .caption {
+  background: #fff;
+  bottom: auto;
+  color: #444;
+  cursor: text;
+  padding: 1rem 1.25rem;
+  position: static;
+  user-select: text;
+}
+
+.poptrox-popup .caption p {
+  color: #444;
+  margin: 0 0 0.5rem;
+}
+
+.poptrox-popup .caption p:last-child {
+  margin-bottom: 0;
+}

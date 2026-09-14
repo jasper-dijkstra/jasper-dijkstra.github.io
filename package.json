@@ -1,10 +1,13 @@
 {
   "name": "jasper-dijkstra.github.io",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Photo portfolio. Gulp builds the CSS and JS; images are resized with ImageMagick.",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-photos.mjs && gulp build"
+    "build": "node scripts/build-photos.mjs && gulp build",
+    "setup-hooks": "sh scripts/setup-hooks.sh",
+    "postinstall": "npm run setup-hooks",
+    "release": "npm version"
   },
   "repository": {
     "type": "git",
@@ -19,7 +22,6 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^5.0.0",
     "gulp-uglify": "^3.0.0",
-    "sass": "^1.25.0",
-    "yaml": "^2.8.1"
+    "sass": "^1.25.0"
   }
 }

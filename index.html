@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/assets/css/main.min.css" />
 <noscript><link rel="stylesheet" href="/assets/css/noscript.min.css" /></noscript>
 <link rel="stylesheet" href="/assets/css/custom.min.css" />
+<link rel="stylesheet" href="/assets/css/lightbox.css" />
 <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,30 +28,25 @@
             <h1><a href="index.html"><strong>Fotografie</strong> by Jasper Dijkstra</a></h1>
             <p>Geospatial data engineer and hobby photographer.</p>
         </div>
-        <div class="site-meta">
-            <nav class="work-menu">
-                <details>
-                    <summary>Werk</summary>
-                    <ul>
-                        <li><a href="werk.html">Alles</a></li>
-                        <li><a href="werk.html#abstract">Abstract</a></li>
-                        <li><a href="werk.html#landschap">Landschap</a></li>
-                        <li><a href="werk.html#detail">Detail</a></li>
-                        <li><a href="werk.html#urban">Urban</a></li>
-                        <li><a href="werk.html#wadden">Wadden</a></li>
-                    </ul>
-                </details>
-            </nav>
-            <ul class="icons">
-                <li><a href="https://github.com/jasper-dijkstra" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                <li><a href="https://www.linkedin.com/in/jasper-dijkstra-/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-            </ul>
-            <p class="copyright">&copy; Jasper Dijkstra. Design: AJ</p>
-        </div>
+        <nav class="site-nav" aria-label="Hoofdnavigatie">
+            <div class="work-menu">
+                <a class="work-menu-trigger" href="werk.html">Werk</a>
+                <ul>
+                    <li><a href="werk.html?category=abstract">Abstract</a></li>
+                    <li><a href="werk.html?category=landschap">Landschap</a></li>
+                    <li><a href="werk.html?category=detail">Detail</a></li>
+                    <li><a href="werk.html?category=urban">Urban</a></li>
+                    <li><a href="werk.html?category=wadden">Wadden</a></li>
+                </ul>
+            </div>
+            <a class="nav-link" href="over-mij.html">Over mij</a>
+        </nav>
     </header>
 
     <!-- Main -->
     <div id="main" data-exif='[{"tag": "Model", "icon": "fa fa-camera-retro"}, {"tag": "FNumber", "icon": "far fa-dot-circle"}, {"tag": "ExposureTime", "icon": "far fa-clock"}, {"tag": "ISOSpeedRatings", "icon": "fa fa-info-circle"}]'></div>
+
+    <footer id="footer">&copy; Jasper Dijkstra 2026</footer>
 
 </div>
 
@@ -63,7 +59,7 @@
 <script src="/assets/js/exif.min.js" defer></script>
 <script src="/assets/js/photos.js" defer></script>
 <script src="/assets/js/gallery.js" defer></script>
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/main.js?v=0.0.1" defer></script>
 
 </body>
 </html>

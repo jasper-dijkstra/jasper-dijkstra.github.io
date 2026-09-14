@@ -12,7 +12,18 @@ set -eu
 cd "$(dirname "$0")"
 
 WATERMARK='© Jasper Dijkstra'
-FONT=/System/Library/Fonts/Supplemental/Arial.ttf
+
+case "$(uname -s)" in
+    Darwin)
+        FONT=/System/Library/Fonts/Supplemental/Arial.ttf
+        ;;
+    MINGW*|MSYS*)
+        FONT=C:/Windows/Fonts/arial.ttf
+        ;;
+    *)
+        FONT=Arial
+        ;;
+esac
 
 command -v magick >/dev/null || { echo "ImageMagick missing: brew install imagemagick" >&2; exit 1; }
 mkdir -p images/fulls images/thumbs

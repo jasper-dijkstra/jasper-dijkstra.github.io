@@ -25,22 +25,8 @@
       ' data-location="' + escapeHtml(photo.location) + '" /></a></article>';
   }
 
-  function setFilter(tag) {
-    var filters = document.querySelectorAll('#work-filters button');
-    filters.forEach(function (filter) {
-      filter.classList.toggle('active', filter.dataset.tag === tag);
-    });
-  }
-
   if (filterPage) {
-    selectedTag = window.location.hash.slice(1);
-    document.querySelectorAll('#work-filters button').forEach(function (filter) {
-      filter.addEventListener('click', function () {
-        window.location.hash = filter.dataset.tag;
-        window.location.reload();
-      });
-    });
-    setFilter(selectedTag);
+    selectedTag = new URLSearchParams(window.location.search).get('category') || '';
   }
 
   gallery.innerHTML = window.PHOTOS.filter(function (photo) {
