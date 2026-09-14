@@ -146,45 +146,32 @@
 	});
   
 	// Main.
-	var $main = $("#main"),
-		exifDatas = {};
-  
-	// Thumbs.
-	$main.children(".thumb").each(function () {
-	  var $this = $(this),
-		$image = $this.find(".image"),
-		$image_img = $image.children("img"),
-		x;
-  
-	  // No image? Bail.
-	  if ($image.length == 0) return;
-  
-	  // EXIF data
-	  $image_img[0].addEventListener("load", function() {
-		EXIF.getData($image_img[0], function () {
-			exifDatas[$image_img.data('name')] = getExifDataMarkup(this);
-		});
-	  });
-	});
+	var $main = $("#main");
   
 	// Poptrox.
 	$main.poptrox({
 	  baseZIndex: 20000,
 	  caption: function ($a) {
 		var $image_img = $a.children('img');
-		var data = exifDatas[$image_img.data('name')];
 		var description = $image_img.data('description');
 		var location = $image_img.data('location');
-		if (data === undefined) {
-			// EXIF data					
-			EXIF.getData($image_img[0], function () {
-				data = exifDatas[$image_img.data('name')] = getExifDataMarkup(this);
-			});
-		}
+		var camera = $image_img.data('camera');
+		var objective = $image_img.data('objective');
+		var aperture = $image_img.data('aperture');
+		var shutterSpeed = $image_img.data('shutter-speed');
+		var iso = $image_img.data('iso');
 		var details = '';
 		if (description) details += '<p>' + description + '</p>';
-		if (location) details += '<p><i class="fa fa-map-marker-alt" aria-hidden="true"></i> ' + location + '</p>';
-		if (data !== undefined) details += '<p>' + data + '</p>';
+		if (location) details += '<p><i class="fa fa-map-marker-alt" aria-hidden="true"></i> Locatie: ' + location + '</p>';
+		if (camera || objective || aperture || shutterSpeed || iso) {
+			details += '<details class="photo-details"><summary>Details</summary><div>';
+			if (camera) details += '<p><i class="fa fa-camera" aria-hidden="true"></i> Camera: ' + camera + '</p>';
+			if (objective) details += '<p><i class="fa fa-bullseye" aria-hidden="true"></i> Objectief: ' + objective + '</p>';
+			if (aperture) details += '<p><i class="fa fa-adjust" aria-hidden="true"></i> Diafragma: ' + aperture + '</p>';
+			if (shutterSpeed) details += '<p><i class="far fa-clock" aria-hidden="true"></i> Sluitertijd: ' + shutterSpeed + '</p>';
+			if (iso) details += '<p><i class="fa fa-film" aria-hidden="true"></i> ' + iso + '</p>';
+			details += '</div></details>';
+		}
 		return details || ' ';
 	},
 	  fadeSpeed: 300,
@@ -204,6 +191,7 @@
 	  usePopupCaption: true,
 	  usePopupCloser: true,
 	  usePopupDefaultStyling: false,
+	  usePopupEasyClose: false,
 	  usePopupForceClose: true,
 	  usePopupLoader: true,
 	  usePopupNav: true,
@@ -219,18 +207,4 @@
 	  $main[0]._poptrox.windowMargin = 50;
 	});
   
-	function getExifDataMarkup(img) {
-		var exif = $('#main').data('exif');
-		var template = '';
-
-		for (var current in exif) {
-			var current_data = exif[current];
-			var exif_data = EXIF.getTag(img, current_data['tag']);
-			if (typeof exif_data !== "undefined") {
-				template += '<i class="' + current_data['icon'] + '" aria-hidden="true"></i> ' + exif_data + '&nbsp;&nbsp;';
-			}
-		}
-		return template;
-	}
-
   })(jQuery);

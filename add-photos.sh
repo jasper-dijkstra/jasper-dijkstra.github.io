@@ -44,6 +44,11 @@ for src in "$@"; do
     tags: []
     description: ""
     location: ""
+    camera: ""
+    objective: ""
+    aperture: ""
+    shutter_speed: ""
+    iso: ""
 EOF
     fi
     echo "added $name"

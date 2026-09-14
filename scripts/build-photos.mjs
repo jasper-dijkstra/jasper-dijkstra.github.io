@@ -16,7 +16,7 @@ function parseValue(value) {
 
 for (const line of source.split(/\r?\n/)) {
   const item = line.match(/^  - (thumbnail):\s*(.*)$/);
-  const field = line.match(/^    (photo|tags|description|location):\s*(.*)$/);
+  const field = line.match(/^    (photo|tags|description|location|camera|objective|aperture|shutter_speed|iso):\s*(.*)$/);
 
   if (item) {
     photo = { [item[1]]: parseValue(item[2]) };

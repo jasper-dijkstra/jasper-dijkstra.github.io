@@ -1,16 +1,75 @@
 # jasper-dijkstra.github.io
 
 Photo portfolio at <https://jasper-dijkstra.github.io/>. Plain static HTML served by GitHub Pages.
-Only a version tag deploys the site. 
+Only a version tag deploys the site.
 
-`photos.yml` is the gallery source of truth. Clicking a photo opens a lightbox that reads EXIF out
-of the JPEG in the browser and shows camera, aperture, shutter speed, ISO, description, and
-location, so never strip metadata from the files in `images/fulls/`.
+## 1. How to install
 
-## Photo metadata
+Clone the repository, then install the project dependencies and enable the image-optimization hook.
 
-Add and edit every photo only in `photos.yml`. Each item defines the thumbnail, full image, tags,
-description, and location:
+### macOS and Linux
+
+Install Node.js LTS and ImageMagick. On macOS with Homebrew:
+
+```sh
+brew install node imagemagick
+```
+
+On Linux, install the same tools with the system package manager. For example, on Ubuntu or Debian:
+
+```sh
+sudo apt install nodejs npm imagemagick
+```
+
+Then run:
+
+```sh
+npm install
+npm run setup-hooks
+```
+
+### Windows
+
+Install Node.js LTS and ImageMagick in PowerShell:
+
+```powershell
+winget install OpenJS.NodeJS.LTS
+winget install ImageMagick.ImageMagick
+```
+
+Restart the terminal. Use Git Bash, or a VS Code terminal set to Git Bash, for the following
+commands. Git Bash provides the `sh` runtime used by the photo importer and pre-commit hook.
+
+```sh
+npm install
+npm run setup-hooks
+```
+
+The `.gitattributes` file keeps the shell scripts in LF format because Git Bash cannot run scripts
+with Windows CRLF line endings.
+
+`npm install` also enables the pre-commit hook. Before each commit, it recompresses staged JPEGs:
+full images in `images/fulls/` use a maximum width of 1024 px at quality 88, and thumbnails in
+`images/thumbs/` use 512 px at quality 85.
+
+## 2. Adding photos
+
+Keep camera originals outside the repository. Import them with:
+
+```sh
+./add-photos.sh ~/Pictures/some-shoot/*.JPG
+```
+
+On Windows in Git Bash, use a path such as:
+
+```sh
+./add-photos.sh /c/Users/your-name/Pictures/shoot/*.JPG
+```
+
+The script creates a resized and watermarked full image in `images/fulls/`, a gallery thumbnail in
+`images/thumbs/`, adds its paths to `photos.yml`, and builds the browser data file.
+
+Edit every photo's tags, description, and location in `photos.yml`:
 
 ```yaml
 photos:
@@ -19,130 +78,67 @@ photos:
     tags: [wadden, landschap]
     description: A short description of the photo.
     location: Terschelling, Netherlands
+    camera: Canon EOS 250D
+    objective: EF-S 18-55mm
+    aperture: f/4
+    shutter_speed: 1/100 s
+    iso: ISO 400
 ```
 
-Tags determine the categories on `werk.html`. Use the existing categories: `wadden`, `macro`,
-`landschap`, and `abstract`.
+  Tags determine the categories on `werk.html`. Current categories are `abstract`, `landschap`,
+  `detail`, `urban`, and `wadden`. The `camera`, `objective`, `aperture`, `shutter_speed`, and `iso`
+  fields are optional. They display below the full-size photo with its description and location.
 
-After changing `photos.yml`, generate the browser data file:
+  After editing `photos.yml`, run:
 
 ```sh
-npm install
 npm run build
 ```
-
-## Image optimization
-
-`npm install` enables the repository pre-commit hook. The hook recompresses staged JPEG files before
-each commit: full-size images in `images/fulls/` use a maximum width of 1024 px at quality 88, and
-thumbnails in `images/thumbs/` use 512 px at quality 85. It stages the optimized files automatically.
-
-Run this once if Git hooks are not active after cloning:
-
-```sh
-npm run setup-hooks
-```
-
-## Adding photos
-
-```sh
-./add-photos.sh ~/Pictures/some-shoot/*.JPG
-```
-
-The script resizes each photo, cuts a thumbnail, stamps the watermark, appends its paths to
-`photos.yml`, and regenerates the browser data file. Originals are read-only and stay outside the repo — `.gitignore` blocks `images/*.jpg`
-and friends so a stray copy can never be committed.
-
-| | size | committed |
-|---|---|---|
-| Camera originals | full | no |
-| `images/fulls/` | 1024 px wide, lightbox view, watermarked | yes |
-| `images/thumbs/` | 512 px wide, grid tiles, clean | yes |
-
-Run it with no arguments to regenerate the browser data file. Needs ImageMagick (`brew install imagemagick`).
 
 Re-running on a photo that is already in `images/fulls/` regenerates it from the original, so the
 watermark is never stamped twice. Remove a photo by deleting both its files and deleting its entry
 from `photos.yml`.
 
-## Windows
+  ## 3. Local preview / testing
 
-Install Git for Windows, Node.js LTS, and ImageMagick. In PowerShell, run:
+  Build the gallery data and CSS first:
 
-```powershell
-winget install Git.Git
-winget install OpenJS.NodeJS.LTS
-winget install ImageMagick.ImageMagick
-```
+  ```sh
+  npm run build
+  ```
 
-Restart the terminal after installation. Run the following commands in **Git Bash** or the VS Code
-terminal set to Git Bash. Git Bash provides the `sh` runtime for the photo importer and pre-commit
-hook.
-
-```sh
-npm install
-npm run setup-hooks
-```
-
-Import photos with a Git Bash path:
-
-```sh
-./add-photos.sh /c/Users/your-name/Pictures/shoot/*.JPG
-```
-
-Build metadata and styles after editing `photos.yml`:
-
-```sh
-npm run build
-```
-
-Preview the site from PowerShell or Git Bash if Python is installed:
-
-```sh
-py -m http.server 4000
-```
-
-Open <http://localhost:4000>. The `.gitattributes` file keeps hook scripts in LF format because
-Git Bash cannot run scripts with Windows CRLF line endings.
-
-## Local preview
+  On macOS or Linux, start a local server:
 
 ```sh
 python3 -m http.server 4000
 ```
 
-Then open <http://localhost:4000>. Opening `index.html` straight from disk does not work — asset
-paths are absolute, so they need a server at the root.
+  On Windows, run this in PowerShell or Git Bash when Python is installed:
 
-## Editing styles
-
-`assets/css/*.min.css` is committed and served directly. It is built from `assets/sass/`, needed only
-if you change the design:
-
-```sh
-npm install && npx gulp build
+  ```powershell
+  py -m http.server 4000
 ```
 
-Delete `gulpfile.mjs`, `package.json` and `assets/sass/` if you never intend to touch the styling; the
-site does not read them.
+  Open <http://localhost:4000>. Do not open `index.html` directly from disk because the site uses
+  root-relative asset paths.
 
-## Deployment
+  ## 4. Deploying a new version
 
-Set **Settings > Pages > Source** to **GitHub Actions** once. Regular pushes do not publish the
-site. Create a version commit and tag from a clean branch, then push it:
+  Set **Settings > Pages > Source** to **GitHub Actions** once. Regular pushes do not publish the
+  site. From a clean branch, create a version commit and tag, then push it:
 
 ```sh
-npm run release -- minor
+  npm run release -- patch
 git push --follow-tags
 ```
 
-Use `patch`, `minor`, `major`, or an exact version such as `1.1.0`. The `v` tag created by `npm
-version` starts the GitHub Pages deployment. Use the **Actions** tab to run the workflow manually
-only when needed.
+  Use `patch`, `minor`, `major`, or an exact version such as `0.0.2`. The `v` tag created by `npm
+  version` starts the GitHub Pages deployment. The deployment checks that the tag and `package.json`
+  versions match.
 
-## Credit
 
-Built on the [photography](https://github.com/rampatra/photography) template by Ram Patra, design by
-[AJ](https://twitter.com/ajlkn). Used under GPL-3.0; this repo carries the same licence. The original
-is a Jekyll theme — this copy renders the same markup as static HTML instead. Upstream is available as
-the `upstream` remote.
+## Credits
+This site began with the [photography](https://github.com/rampatra/photography)
+Jekyll template by Ram Patra, based on the Multiverse design by
+[AJ](https://twitter.com/ajlkn). It has since been converted to a static site
+  and substantially customized.
