@@ -196,13 +196,19 @@
 	  caption: function ($a) {
 		var $image_img = $a.children('img');
 		var data = exifDatas[$image_img.data('name')];
+		var description = $image_img.data('description');
+		var location = $image_img.data('location');
 		if (data === undefined) {
 			// EXIF data					
 			EXIF.getData($image_img[0], function () {
 				data = exifDatas[$image_img.data('name')] = getExifDataMarkup(this);
 			});
 		}
-		return data !== undefined ? '<p>' + data + '</p>' : ' ';
+		var details = '';
+		if (description) details += '<p>' + description + '</p>';
+		if (location) details += '<p><i class="fa fa-map-marker-alt" aria-hidden="true"></i> ' + location + '</p>';
+		if (data !== undefined) details += '<p>' + data + '</p>';
+		return details || ' ';
 	},
 	  fadeSpeed: 300,
 	  onPopupClose: function () {
