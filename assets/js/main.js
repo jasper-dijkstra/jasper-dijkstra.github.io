@@ -182,19 +182,6 @@
 	  // No image? Bail.
 	  if ($image.length == 0) return;
   
-	  // Image.
-	  // This sets the background of the "image" <span> to the image pointed to by its child
-	  // <img> (which is then hidden). Gives us way more flexibility.
-  
-	  // Set background.
-	  $image.css("background-image", "url(" + $image_img.attr("src") + ")");
-  
-	  // Set background position.
-	  if ((x = $image_img.data("position"))) $image.css("background-position", x);
-  
-	  // Hide original img.
-	  $image_img.hide();
-
 	  // EXIF data
 	  $image_img[0].addEventListener("load", function() {
 		EXIF.getData($image_img[0], function () {

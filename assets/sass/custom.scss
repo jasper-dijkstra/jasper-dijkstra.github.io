@@ -6,6 +6,35 @@
 	color: _palette(fg);
 }
 
+/* Gallery */
+#main {
+	display: block;
+	columns: 16rem;
+	column-gap: 0;
+
+	.thumb {
+		break-inside: avoid;
+		display: inline-block;
+		width: auto;
+		height: auto;
+		min-height: 0;
+
+		> .image {
+			display: block;
+			position: static;
+			height: auto;
+			width: 100%;
+			background: none;
+
+			img {
+				display: block;
+				height: auto;
+				width: 100%;
+			}
+		}
+	}
+}
+
 /* Footer */
 #footer {
 	.presentify {
