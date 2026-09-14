@@ -28,6 +28,7 @@ body {
 		h1 {
 			color: #222;
 			font-size: 1.25rem;
+			letter-spacing: 0;
 		}
 
 		p {
@@ -40,6 +41,7 @@ body {
 		align-items: center;
 		display: flex;
 		gap: 0.5rem;
+		position: static;
 
 		.work-menu {
 			position: relative;
@@ -170,6 +172,9 @@ body {
 /* Lightbox metadata */
 .poptrox-popup {
 	background: #fff;
+	max-height: calc(100vh - 2rem);
+	overflow-y: auto;
+	overscroll-behavior: contain;
 
 	&:before {
 		display: none;
@@ -216,12 +221,23 @@ body {
 
 		.site-nav {
 			gap: 0;
+			justify-content: space-between;
+			width: 100%;
 
 			.work-menu .work-menu-trigger,
 			.nav-link {
 				padding: 0.5rem 0.75rem;
 			}
+
+			.work-menu ul {
+				left: 0;
+				right: auto;
+			}
 		}
 	}
 
+	.poptrox-popup .caption {
+		display: block !important;
+		padding: 0.75rem 1rem;
+	}
 }

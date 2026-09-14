@@ -129,7 +129,7 @@ python3 -m http.server 4000
 
 ```sh
   npm run release -- patch
-git push --follow-tags
+  git push --follow-tags
 ```
 
   Use `patch`, `minor`, `major`, or an exact version such as `0.0.2`. The `v` tag created by `npm
