@@ -143,16 +143,21 @@
     button.textContent = 'Laad meer foto\'s';
     button.addEventListener('click', function (event) {
       event.preventDefault();
-      var scrollTop = window.pageYOffset;
+      var currentScrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      button.blur();
 
       Array.prototype.slice.call(hiddenItems(), 0, batchSize).forEach(function (item) {
+        item.style.opacity = '0';
         item.classList.remove('gallery-item-hidden');
+        window.requestAnimationFrame(function () {
+          item.style.opacity = '1';
+        });
       });
 
       relayout();
 
       window.requestAnimationFrame(function () {
-        window.scrollTo(0, scrollTop);
+        window.scrollTo(window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0, currentScrollY);
       });
 
       if (hiddenItems().length === 0) {
