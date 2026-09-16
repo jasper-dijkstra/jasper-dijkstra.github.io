@@ -38,7 +38,10 @@ for src in "$@"; do
         -pointsize 22 -fill '#ffffffd0' -annotate +18+14 "$WATERMARK" \
         "images/fulls/$name"
     if ! grep -Fq "photo: /images/fulls/$name" photos.yml; then
-        cat >> photos.yml <<EOF
+        tmp=$(mktemp)
+        {
+            printf 'photos:\n'
+            cat <<EOF
   - thumbnail: /images/thumbs/$name
     photo: /images/fulls/$name
     tags: []
@@ -49,7 +52,11 @@ for src in "$@"; do
     aperture: ""
     shutter_speed: ""
     iso: ""
+    capture_date: ""
 EOF
+            tail -n +2 photos.yml
+        } > "$tmp"
+        mv "$tmp" photos.yml
     fi
     echo "added $name"
 done

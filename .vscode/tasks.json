@@ -1,0 +1,47 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "copy-about-photo",
+			"type": "shell",
+			"command": "mkdir -p images/about && sips -s format jpeg -s formatOptions 86 --resampleHeightWidthMax 1200 \"/Users/jasper/Pictures/202603_Marokko/bewerkt/IMG_5222.jpeg\" --out \"images/about/jasper-dijkstra.jpg\"",
+			"problemMatcher": []
+		},
+		{
+			"label": "build-site-assets",
+			"type": "shell",
+			"command": "npm run build",
+			"problemMatcher": []
+		},
+		{
+			"label": "backfill-photo-exif",
+			"type": "shell",
+			"command": "npm run backfill-exif",
+			"problemMatcher": []
+		},
+		{
+			"label": "rebuild-css",
+			"type": "shell",
+			"command": "npm run build",
+			"problemMatcher": []
+		},
+		{
+			"label": "read-image-exif",
+			"type": "shell",
+			"command": "python3 - <<'PY'\nfrom PIL import Image\nfrom pathlib import Path\nroot = Path('images/fulls')\nfor p in sorted(root.iterdir()):\n    if not p.is_file():\n        continue\n    try:\n        with Image.open(p) as img:\n            exif = img.getexif()\n            tags = {}\n            for k,v in exif.items():\n                if k in (36867,306,271,272,33434,34855,34856,34857,34858):\n                    tags[k]=v\n            if tags:\n                print(p.name, tags)\n    except Exception as e:\n        print('ERR', p.name, type(e).__name__, e)\nPY",
+			"problemMatcher": []
+		},
+		{
+			"label": "dump-exif",
+			"type": "shell",
+			"command": "mkdir -p .tmp && magick identify -verbose images/fulls/*.JPG 2>/dev/null | grep -E 'DateTimeOriginal|Model:|FocalLength:|Aperture:|Exposure:|ISO:' | head -n 200 > .tmp/exif_dump.txt && printf 'done\\n'",
+			"problemMatcher": []
+		},
+		{
+			"label": "extract-exif-to-json",
+			"type": "shell",
+			"command": "python3 - <<'PY'\nfrom PIL import Image\nfrom pathlib import Path\nimport json\nroot = Path('images/fulls')\nout = {}\nfor p in sorted(root.iterdir()):\n    if not p.is_file():\n        continue\n    try:\n        with Image.open(p) as img:\n            exif = img.getexif()\n            data = {}\n            mapping = {\n                306: 'DateTime',\n                36867: 'DateTimeOriginal',\n                271: 'Make',\n                272: 'Model',\n                33434: 'ExposureTime',\n                34855: 'ISOSpeedRatings',\n                34856: 'ApertureValue',\n                34857: 'ShutterSpeedValue',\n                34858: 'FocalLength',\n                42036: 'LensModel',\n            }\n            for tag, name in mapping.items():\n                if tag in exif:\n                    value = exif.get(tag)\n                    data[name] = str(value)\n            if data:\n                out[p.name] = data\n    except Exception as e:\n        out[p.name] = {'ERROR': f'{type(e).__name__}: {e}'}\nPath('.tmp/exif_metadata.json').write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding='utf-8')\nprint(f'wrote {len(out)} entries to .tmp/exif_metadata.json')\nPY",
+			"problemMatcher": []
+		}
+	]
+}

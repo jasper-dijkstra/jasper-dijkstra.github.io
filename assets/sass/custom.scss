@@ -156,16 +156,52 @@ body {
 #about {
 	color: #444;
 	margin: 0 auto;
-	max-width: 42rem;
+	max-width: 68rem;
 	min-height: 60vh;
 	padding: clamp(2rem, 8vw, 6rem) 1.25rem;
+
+	.about-portrait {
+		float: right;
+		margin: 0 0 1.5rem 2.25rem;
+		max-width: 24rem;
+		width: min(32vw, 24rem);
+
+		img {
+			border-radius: 0.5rem;
+			display: block;
+			height: auto;
+			width: 100%;
+		}
+	}
 
 	h2 {
 		color: #222;
 	}
 
+	a {
+		color: #1d4f8c;
+		text-decoration: underline;
+
+		&:hover {
+			color: #153a66;
+		}
+	}
+
 	.icons {
 		margin: 2rem 0 0;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	#about {
+		max-width: 42rem;
+
+		.about-portrait {
+			float: none;
+			margin: 0 auto 1.5rem;
+			max-width: 22rem;
+			width: 100%;
+		}
 	}
 }
 
