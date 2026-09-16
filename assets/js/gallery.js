@@ -99,11 +99,21 @@
       while (column.firstChild) column.removeChild(column.firstChild);
     });
 
-    items.forEach(function (item) {
+    var visibleItems = items.filter(function (item) {
+      return !item.classList.contains('gallery-item-hidden');
+    });
+
+    visibleItems.forEach(function (item) {
       var shortestColumn = columns.reduce(function (shortest, column) {
         return column.offsetHeight < shortest.offsetHeight ? column : shortest;
       }, columns[0]);
       shortestColumn.appendChild(item);
+    });
+
+    items.filter(function (item) {
+      return item.classList.contains('gallery-item-hidden');
+    }).forEach(function (item, index) {
+      columns[index % columns.length].appendChild(item);
     });
   };
 
@@ -138,6 +148,8 @@
       Array.prototype.slice.call(hiddenItems(), 0, batchSize).forEach(function (item) {
         item.classList.remove('gallery-item-hidden');
       });
+
+      relayout();
 
       window.requestAnimationFrame(function () {
         window.scrollTo(0, scrollTop);

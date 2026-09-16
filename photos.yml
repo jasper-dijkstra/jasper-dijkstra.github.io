@@ -68,7 +68,7 @@ photos:
   - thumbnail: "/images/thumbs/IMG_4011.jpeg"
     photo: "/images/fulls/IMG_4011.jpeg"
     tags: [detail]
-    description: "De 'Belle Époque'"
+    description: "'Belle Époque'"
     location: "Évian-les-Bains, Frankrijk"
     camera: "Canon EOS 250D"
     objective: "EF-S18-135mm f/3.5-5.6 IS USM"
@@ -167,7 +167,7 @@ photos:
   - thumbnail: "/images/thumbs/IMG_2987.JPG"
     photo: "/images/fulls/IMG_2987.JPG"
     tags: [landschap]
-    description: "Zonsondergang tussen Senja en Andøya"
+    description: "Tussen Senja en Andøya"
     location: "Andefjorden, Noorwegen"
     camera: "Canon EOS 250D"
     objective: "72mm"
@@ -343,7 +343,7 @@ photos:
   - thumbnail: "/images/thumbs/IMG_478.JPG"
     photo: "/images/fulls/IMG_478.JPG"
     tags: [landschap]
-    description: "Zonsondergang boven Lausanne"
+    description: "Het blauwe uur boven Lausanne"
     location: "Meillerie, Frankrijk"
     camera: "Canon EOS 250D"
     objective: "EF-S18-135mm f/3.5-5.6 IS USM"
@@ -365,7 +365,7 @@ photos:
   - thumbnail: "/images/thumbs/IMG_198.JPG"
     photo: "/images/fulls/IMG_198.JPG"
     tags: [landschap]
-    description: "Drooggevallen"
+    description: ""
     location: "Landévennec, Frankrijk"
     camera: "Canon EOS 250D"
     objective: "EF-S18-135mm f/3.5-5.6 IS USM"
@@ -409,7 +409,7 @@ photos:
   - thumbnail: "/images/thumbs/IMG_2738.jpg"
     photo: "/images/fulls/IMG_2738.jpg"
     tags: [landschap]
-    description: "Stille zee"
+    description: ""
     location: "Stamsund (Lofoten), Noorwegen"
     camera: "Canon EOS 60D"
     objective: "85 mm"
