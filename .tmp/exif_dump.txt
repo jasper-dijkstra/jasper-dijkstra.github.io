@@ -10,8 +10,16 @@
     exif:FocalLength: 106/1
     exif:LensModel: EF-S18-135mm f/3.5-5.6 IS USM
     exif:Model: Canon EOS 250D
+    exif:DateTimeOriginal: 2024:07:17 15:54:34
+    exif:FocalLength: 27/1
+    exif:LensModel: EF-S18-135mm f/3.5-5.6 IS USM
+    exif:Model: Canon EOS 250D
     exif:DateTimeOriginal: 2025:01:18 15:27:33
     exif:FocalLength: 72/1
+    exif:LensModel: EF-S18-135mm f/3.5-5.6 IS USM
+    exif:Model: Canon EOS 250D
+    exif:DateTimeOriginal: 2024:07:19 09:56:19
+    exif:FocalLength: 35/1
     exif:LensModel: EF-S18-135mm f/3.5-5.6 IS USM
     exif:Model: Canon EOS 250D
     exif:DateTimeOriginal: 2025:05:09 20:32:19
@@ -28,6 +36,10 @@
     exif:Model: Canon EOS 250D
     exif:DateTimeOriginal: 2025:07:05 12:50:07
     exif:FocalLength: 67/1
+    exif:LensModel: EF-S18-135mm f/3.5-5.6 IS USM
+    exif:Model: Canon EOS 250D
+    exif:DateTimeOriginal: 2024:07:24 12:19:20
+    exif:FocalLength: 18/1
     exif:LensModel: EF-S18-135mm f/3.5-5.6 IS USM
     exif:Model: Canon EOS 250D
     exif:DateTimeOriginal: 2025:12:30 11:32:05

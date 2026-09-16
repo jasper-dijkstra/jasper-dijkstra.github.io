@@ -67,7 +67,9 @@ On Windows in Git Bash, use a path such as:
 ```
 
 The script creates a resized and watermarked full image in `images/fulls/`, a gallery thumbnail in
-`images/thumbs/`, adds its paths to `photos.yml`, and builds the browser data file.
+`images/thumbs/`, adds its paths to `photos.yml`, fills blank metadata fields from the image EXIF,
+sorts the entries by capture date, and builds the browser data file. Run `npm run backfill-exif` to
+repeat the metadata update for existing photos.
 
 Edit every photo's tags, description, and location in `photos.yml`:
 

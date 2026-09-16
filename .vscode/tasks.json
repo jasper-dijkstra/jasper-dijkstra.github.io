@@ -20,6 +20,18 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "test-photo-metadata",
+			"type": "shell",
+			"command": "node --test scripts/build-photos.test.mjs",
+			"problemMatcher": []
+		},
+		{
+			"label": "inspect-iso-tags",
+			"type": "shell",
+			"command": "magick identify -format '%f | ratings=%[EXIF:ISOSpeedRatings] | iso=%[EXIF:ISO] | sensitivity=%[EXIF:PhotographicSensitivity]\\n' images/fulls/* > .tmp/iso_tags.txt",
+			"problemMatcher": []
+		},
+		{
 			"label": "rebuild-css",
 			"type": "shell",
 			"command": "npm run build",

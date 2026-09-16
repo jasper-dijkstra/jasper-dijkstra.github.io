@@ -31,13 +31,13 @@ mkdir -p images/fulls images/thumbs
 
 for src in "$@"; do
     name=$(basename "$src")
-    magick "$src" -resize 1024x -quality 88 "images/fulls/$name"
-    magick "images/fulls/$name" -resize 512x -quality 85 "images/thumbs/$name"
+    magick "$src" -define jpeg:preserve-settings -resize 1024x -quality 88 "images/fulls/$name"
+    magick "images/fulls/$name" -define jpeg:preserve-settings -resize 512x -quality 85 "images/thumbs/$name"
     magick mogrify -font "$FONT" -gravity southeast \
         -pointsize 22 -fill '#00000080' -annotate +19+13 "$WATERMARK" \
         -pointsize 22 -fill '#ffffffd0' -annotate +18+14 "$WATERMARK" \
         "images/fulls/$name"
-    if ! grep -Fq "photo: /images/fulls/$name" photos.yml; then
+    if ! grep -Fq "/images/fulls/$name" photos.yml; then
         tmp=$(mktemp)
         {
             printf 'photos:\n'
@@ -61,5 +61,6 @@ EOF
     echo "added $name"
 done
 
+npm run backfill-exif
 npm run build
 echo "ok: $(ls images/fulls | wc -l | tr -d ' ') photos generated from photos.yml"

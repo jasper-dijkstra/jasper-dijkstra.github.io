@@ -74,11 +74,20 @@ function formatShutterSpeed(value) {
   return `1/${denominator} s`;
 }
 
+function formatRational(value) {
+  const text = String(value).trim();
+  const match = text.match(/^(-?\d+)\/(\d+)$/);
+  if (!match || match[2] === '0') return text;
+  const numeric = Number(match[1]) / Number(match[2]);
+  return Number.isInteger(numeric) ? String(numeric) : numeric.toFixed(1).replace(/\.0$/, '');
+}
+
 function formatAperture(value) {
   if (!value && value !== 0) return '';
-  const numeric = Number(value);
+  const formatted = formatRational(value);
+  const numeric = Number(formatted);
   if (Number.isNaN(numeric)) {
-    const text = String(value).trim();
+    const text = formatted.trim();
     return text.toLowerCase().startsWith('f/') ? text : text ? `f/${text}` : '';
   }
   return `f/${Number(numeric).toFixed(1).replace(/\.0$/, '')}`;
@@ -87,7 +96,7 @@ function formatAperture(value) {
 export function fillMissingMetadata(photos, exifMap) {
   const isMissing = (value) => {
     const trimmed = value?.trim() || '';
-    return trimmed === '' || trimmed === 'f/' || trimmed === '1/';
+    return trimmed === '' || trimmed === 'f/' || trimmed === '1/' || /^f\/\d+\/\d+$/.test(trimmed);
   };
 
   return photos.map((photo) => {
@@ -140,11 +149,13 @@ export async function loadExifMetadata(photos) {
       const { stdout } = await execFileAsync('magick', [
         'identify',
         '-format',
-        '%[EXIF:DateTimeOriginal]|%[EXIF:DateTime]|%[EXIF:Model]|%[EXIF:LensModel]|%[EXIF:FNumber]|%[EXIF:ExposureTime]|%[EXIF:ISOSpeedRatings]|%[EXIF:FocalLength]',
+        '%[EXIF:DateTimeOriginal]|%[EXIF:DateTime]|%[EXIF:Model]|%[EXIF:LensModel]|%[EXIF:FNumber]|%[EXIF:ExposureTime]|%[EXIF:FocalLength]',
         fullPath,
       ]);
-      const [dateOriginal, date, model, lens, fNumber, exposure, iso, focalLength] = stdout.trim().split('|');
-      if (![dateOriginal, date, model, lens, fNumber, exposure, iso, focalLength].some(Boolean)) continue;
+      const { stdout: verbose } = await execFileAsync('magick', ['identify', '-verbose', fullPath]);
+      const isoMatch = verbose.match(/(?:ISOSpeedRatings|PhotographicSensitivity|ISO)\s*:\s*(\d+)/i);
+      const [dateOriginal, date, model, lens, fNumber, exposure, focalLength] = stdout.trim().split('|');
+      if (![dateOriginal, date, model, lens, fNumber, exposure, isoMatch?.[1], focalLength].some(Boolean)) continue;
 
       exifMap[fileName] = {
         DateTimeOriginal: dateOriginal || date || '',
@@ -153,7 +164,7 @@ export async function loadExifMetadata(photos) {
         LensModel: lens || '',
         FNumber: fNumber || '',
         ExposureTime: exposure || '',
-        ISO: iso || '',
+        ISO: isoMatch?.[1] || '',
         FocalLength: focalLength || '',
         ApertureValue: fNumber || '',
       };

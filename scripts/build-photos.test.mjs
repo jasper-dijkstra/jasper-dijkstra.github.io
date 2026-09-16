@@ -55,9 +55,9 @@ test('fillMissingMetadata uses EXIF values when the YAML fields are blank', () =
       DateTimeOriginal: '2024:02:10 10:15:45',
       Model: 'Canon EOS 250D',
       LensModel: 'EF-S 18-55mm',
-      ApertureValue: 'f/4',
+      FNumber: '63/10',
       ExposureTime: '1/250',
-      ISOSpeedRatings: 'ISO 100',
+      ISO: '100',
     },
   };
 
@@ -65,7 +65,7 @@ test('fillMissingMetadata uses EXIF values when the YAML fields are blank', () =
   assert.equal(result[0].location, '');
   assert.equal(result[0].camera, 'Canon EOS 250D');
   assert.equal(result[0].objective, 'EF-S 18-55mm');
-  assert.equal(result[0].aperture, 'f/4');
+  assert.equal(result[0].aperture, 'f/6.3');
   assert.equal(result[0].shutter_speed, '1/250 s');
   assert.equal(result[0].iso, 'ISO 100');
 });
