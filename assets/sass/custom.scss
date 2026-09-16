@@ -156,6 +156,7 @@ body {
 			gap: 0.5rem;
 		}
 	}
+
 }
 
 .gallery-item-hidden {
@@ -185,6 +186,18 @@ body {
 			color: #777 !important;
 			text-decoration: underline;
 		}
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.gallery-controls {
+		background: rgba(255, 255, 255, 0.94);
+		bottom: 0;
+		left: 0;
+		padding: 0.35rem 0.5rem calc(0.35rem + env(safe-area-inset-bottom));
+		position: fixed;
+		right: 0;
+		z-index: 20;
 	}
 }
 

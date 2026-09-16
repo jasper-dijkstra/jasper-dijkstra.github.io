@@ -4,7 +4,7 @@
   "description": "Photo portfolio. Gulp builds the CSS and JS; images are resized with ImageMagick.",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-photos.mjs && gulp build",
+    "build": "node scripts/version-assets.mjs && node scripts/build-photos.mjs && gulp build",
     "backfill-exif": "node scripts/backfill-exif.mjs",
     "setup-hooks": "sh scripts/setup-hooks.sh",
     "postinstall": "npm run setup-hooks",
