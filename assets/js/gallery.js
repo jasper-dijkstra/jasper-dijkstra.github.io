@@ -32,16 +32,93 @@
       ' data-iso="' + escapeHtml(photo.iso) + '" /></a></article>';
   }
 
+  function createPhotoItem(photo, index) {
+    var item = document.createElement('article');
+    var markup = renderPhoto(photo, index);
+    item.className = 'thumb' + (index >= batchSize ? ' gallery-item-hidden' : '');
+    item.innerHTML = markup.slice(markup.indexOf('>') + 1, markup.lastIndexOf('</article>'));
+    return item;
+  }
+
+  var workMenu = document.querySelector('.work-menu');
+  var workMenuTrigger = workMenu && workMenu.querySelector('.work-menu-trigger');
+  if (workMenu && workMenuTrigger) {
+    workMenuTrigger.addEventListener('click', function (event) {
+      if (window.matchMedia('(max-width: 700px)').matches && !workMenu.classList.contains('is-open')) {
+        event.preventDefault();
+        workMenu.classList.add('is-open');
+      }
+    });
+    document.addEventListener('click', function (event) {
+      if (!workMenu.contains(event.target)) workMenu.classList.remove('is-open');
+    });
+  }
+
   if (filterPage) {
     selectedTag = new URLSearchParams(window.location.search).get('category') || '';
     document.querySelector('#work-heading h2').textContent = selectedTag ? selectedTag.charAt(0).toUpperCase() + selectedTag.slice(1) : 'Werk';
   }
 
+  var landscapeFilter = filterPage && (selectedTag === 'landschap' || selectedTag === 'landscape');
+
   var filteredPhotos = window.PHOTOS.filter(function (photo) {
-    return selectedTag === '' || photo.tags.includes(selectedTag);
+    if (selectedTag === '') return true;
+    if (landscapeFilter) return photo.tags.includes('landschap') || photo.tags.includes('landscape');
+    return photo.tags.includes(selectedTag);
   });
 
   gallery.innerHTML = filteredPhotos.map(renderPhoto).join('');
+
+  var getColumnCount = function () {
+    if (window.matchMedia('(max-width: 700px)').matches) return 2;
+    return Math.max(1, Math.floor(gallery.clientWidth / 300));
+  };
+  var columns = [];
+  var columnCount = getColumnCount();
+  var columnMarkup = '';
+
+  gallery.style.setProperty('--gallery-columns', columnCount);
+  gallery.style.setProperty('--gallery-rest-columns', Math.max(1, columnCount - 1));
+
+  for (var columnIndex = 0; columnIndex < columnCount; columnIndex += 1) {
+    columnMarkup += '<div class="gallery-column"></div>';
+  }
+  gallery.innerHTML = columnMarkup;
+  columns = Array.prototype.slice.call(gallery.querySelectorAll('.gallery-column'));
+
+  var items = filteredPhotos.map(function (photo, index) {
+    return createPhotoItem(photo, index);
+  });
+
+  items.forEach(function (item, index) {
+    columns[index % columns.length].appendChild(item);
+  });
+
+  var relayout = function () {
+    columns.forEach(function (column) {
+      while (column.firstChild) column.removeChild(column.firstChild);
+    });
+
+    items.forEach(function (item) {
+      var shortestColumn = columns.reduce(function (shortest, column) {
+        return column.offsetHeight < shortest.offsetHeight ? column : shortest;
+      }, columns[0]);
+      shortestColumn.appendChild(item);
+    });
+  };
+
+  var relayoutPending = false;
+  items.forEach(function (item) {
+    var image = item.querySelector('img');
+    image.addEventListener('load', function () {
+      if (relayoutPending) return;
+      relayoutPending = true;
+      window.requestAnimationFrame(function () {
+        relayoutPending = false;
+        relayout();
+      });
+    });
+  });
 
   if (filteredPhotos.length > batchSize) {
     var controls = document.createElement('div');
@@ -54,9 +131,16 @@
     button.className = 'load-more';
     button.type = 'button';
     button.textContent = 'Laad meer foto\'s';
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var scrollTop = window.pageYOffset;
+
       Array.prototype.slice.call(hiddenItems(), 0, batchSize).forEach(function (item) {
         item.classList.remove('gallery-item-hidden');
+      });
+
+      window.requestAnimationFrame(function () {
+        window.scrollTo(0, scrollTop);
       });
 
       if (hiddenItems().length === 0) {

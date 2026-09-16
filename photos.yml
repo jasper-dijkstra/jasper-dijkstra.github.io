@@ -89,7 +89,7 @@ photos:
     capture_date: "2025:07:05 12:50:07"
   - thumbnail: "/images/thumbs/IMG_2987.JPG"
     photo: "/images/fulls/IMG_2987.JPG"
-    tags: [landscape]
+    tags: [landschap]
     description: "Zonsondergang tussen Senja en Andøya"
     location: "Andefjorden, Noorwegen"
     camera: "Canon EOS 250D"
@@ -166,7 +166,7 @@ photos:
     capture_date: "2025:02:16 12:52:10"
   - thumbnail: "/images/thumbs/IMG_01.JPG"
     photo: "/images/fulls/IMG_01.JPG"
-    tags: [wadden, landscape]
+    tags: [wadden, landschap]
     description: "Verstilling"
     location: "Nes, Ameland"
     camera: "Canon EOS 250D"
@@ -210,7 +210,7 @@ photos:
     capture_date: "2024:10:27 16:19:22"
   - thumbnail: "/images/thumbs/IMG_478.JPG"
     photo: "/images/fulls/IMG_478.JPG"
-    tags: [landscape]
+    tags: [landschap]
     description: "Zonsondergang boven Lausanne"
     location: "Meillerie, Frankrijk"
     camera: "Canon EOS 250D"
@@ -232,7 +232,7 @@ photos:
     capture_date: "2024:07:24 12:19:20"
   - thumbnail: "/images/thumbs/IMG_198.JPG"
     photo: "/images/fulls/IMG_198.JPG"
-    tags: [landscape]
+    tags: [landschap]
     description: "Drooggevallen"
     location: "Landévennec, Frankrijk"
     camera: "Canon EOS 250D"
@@ -243,7 +243,7 @@ photos:
     capture_date: "2024:07:19 09:56:19"
   - thumbnail: "/images/thumbs/IMG_123.JPG"
     photo: "/images/fulls/IMG_123.JPG"
-    tags: [landscape]
+    tags: [landschap]
     description: "Vuurtoren van Ploumanac'h"
     location: "Saint-Guirec, Frankrijk"
     camera: "Canon EOS 250D"
@@ -254,7 +254,7 @@ photos:
     capture_date: "2024:07:17 15:54:34"
   - thumbnail: "/images/thumbs/IMG_3595.jpg"
     photo: "/images/fulls/IMG_3595.jpg"
-    tags: [landscape]
+    tags: [landschap]
     description: "Bewolking"
     location: "Henningsvær, Noorwegen"
     camera: "Canon EOS 60D"
@@ -265,7 +265,7 @@ photos:
     capture_date: "2023:07:21 13:05:22"
   - thumbnail: "/images/thumbs/15_IMG_2974.jpg"
     photo: "/images/fulls/15_IMG_2974.jpg"
-    tags: [landscape]
+    tags: [landschap]
     description: "Rorbuer - traditionele Noorse seizoenshuisjes voor vissers"
     location: "Nusfjord, Lofoten, Noorwegen"
     camera: "Canon EOS 60D"
@@ -276,7 +276,7 @@ photos:
     capture_date: "2023:07:17 13:36:38"
   - thumbnail: "/images/thumbs/IMG_2738.jpg"
     photo: "/images/fulls/IMG_2738.jpg"
-    tags: [landscape]
+    tags: [landschap]
     description: "Stille zee"
     location: ""
     camera: "Canon EOS 60D"
