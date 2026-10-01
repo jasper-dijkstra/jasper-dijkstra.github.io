@@ -259,6 +259,35 @@ body {
 	}
 }
 
+#contact {
+	color: #444;
+	margin: 0 auto;
+	max-width: 68rem;
+	min-height: 60vh;
+	padding: clamp(2rem, 8vw, 6rem) 1.25rem;
+
+	h2 {
+		color: #222;
+	}
+
+	.contact-form {
+		margin: 2rem 0 0;
+	}
+
+	iframe {
+		background: transparent;
+		border: 0;
+		display: block;
+		min-height: 38rem;
+		width: 100%;
+	}
+
+	.contact-privacy {
+		color: #666;
+		font-size: 0.875rem;
+	}
+}
+
 @media screen and (max-width: 700px) {
 	#about {
 		max-width: 42rem;
@@ -268,6 +297,14 @@ body {
 			margin: 0 auto 1.5rem;
 			max-width: 22rem;
 			width: 100%;
+		}
+	}
+
+	#contact {
+		max-width: 42rem;
+
+		iframe {
+			min-height: 42rem;
 		}
 	}
 }

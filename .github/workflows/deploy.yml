@@ -48,7 +48,7 @@ jobs:
       - name: Collect site
         run: |
           mkdir _site
-          cp -R index.html werk.html over-mij.html photos.yml assets images _site/
+          cp -R index.html werk.html over-mij.html contact.html photos.yml assets images _site/
           [ -f favicon.svg ] && cp favicon.svg _site/favicon.svg || true
           [ -f CNAME ] && cp CNAME _site/CNAME || true
 

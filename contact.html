@@ -1,24 +1,19 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="nl">
 <head>
-<title>Jasper Dijkstra</title>
+<title>Contact | Jasper Dijkstra Fotografie</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<meta name="description" content="Jasper Dijkstra." />
+<meta name="description" content="Neem contact op met Jasper Dijkstra." />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-
 <link rel="stylesheet" href="/assets/css/main.min.css" />
-<noscript><link rel="stylesheet" href="/assets/css/noscript.min.css" /></noscript>
 <link rel="stylesheet" href="/assets/css/custom.min.css?v=0.0.9" />
-<link rel="stylesheet" href="/assets/css/lightbox.css" />
 <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css" />
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic">
 </head>
-<body class="is-preload">
-
+<body>
 <div id="wrapper">
     <header id="header">
         <div class="site-intro">
@@ -37,25 +32,32 @@
                 </ul>
             </div>
             <a class="nav-link" href="over-mij.html">Over mij</a>
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="contact.html" aria-current="page">Contact</a>
         </nav>
     </header>
 
-    <section id="work-heading">
-        <h2>Werk</h2>
-    </section>
-    <div id="main" data-filter-page="true"></div>
+    <main id="contact">
+        <h2>Contact</h2>
+        <p>Vul onderstaand formulier in met je vraag of opmerking, dan neem ik zo spoedig mogelijk contact op.</p>
+        <div class="contact-form">
+            <iframe
+                data-tally-src="https://tally.so/embed/ja1YOJ?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1"
+                loading="lazy"
+                title="Contactformulier van Jasper Dijkstra"
+                width="100%"
+                height="608"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"></iframe>
+        </div>
+    </main>
+
     <footer id="footer">&copy; Jasper Dijkstra 2026</footer>
 </div>
 
-<script src="/assets/js/jquery.min.js" defer></script>
-<script src="/assets/js/jquery.poptrox.modified.min.js" defer></script>
-<script src="/assets/js/browser.min.js" defer></script>
-<script src="/assets/js/breakpoints.min.js" defer></script>
-<script src="/assets/js/util.min.js" defer></script>
-<script src="/assets/js/photos.js" defer></script>
-<script src="/assets/js/gallery.js" defer></script>
-<script src="/assets/js/main.js?v=0.0.9-5" defer></script>
-
+<script>
+var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})};
+if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;s.defer=true;document.body.appendChild(s)}
+</script>
 </body>
 </html>
