@@ -2,6 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { parsePhotos, fillMissingMetadata, sortPhotosByDate } from './build-photos.mjs';
+import { removePhotoEntry } from './remove-photo.mjs';
+
+test('removePhotoEntry removes only the matching gallery entry', () => {
+  const first = { photo: '/images/fulls/IMG_4536.JPG', thumbnail: '/images/thumbs/IMG_4536.JPG' };
+  const second = { photo: '/images/fulls/IMG_4538.JPG', thumbnail: '/images/thumbs/IMG_4538.JPG' };
+
+  assert.deepEqual(removePhotoEntry([first, second], 'IMG_4536.JPG'), [second]);
+});
+
+test('removePhotoEntry refuses unknown, ambiguous, or last photos', () => {
+  const photo = { photo: '/images/fulls/IMG_4536.JPG', thumbnail: '/images/thumbs/IMG_4536.JPG' };
+  assert.throws(() => removePhotoEntry([photo], 'IMG_0000.JPG'), /No gallery photo found/);
+  assert.throws(() => removePhotoEntry([photo], 'IMG_4536.JPG'), /Cannot remove the last photo/);
+  assert.throws(() => removePhotoEntry([photo, photo], 'IMG_4536.JPG'), /More than one gallery entry/);
+});
 
 test('parsePhotos reads YAML metadata into typed objects', () => {
   const source = `photos:

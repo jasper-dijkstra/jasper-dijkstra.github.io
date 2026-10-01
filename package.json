@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node scripts/version-assets.mjs && node scripts/build-photos.mjs && gulp build",
     "backfill-exif": "node scripts/backfill-exif.mjs",
+    "remove-photo": "node scripts/remove-photo.mjs",
     "setup-hooks": "sh scripts/setup-hooks.sh",
     "postinstall": "npm run setup-hooks",
     "release": "npm version"

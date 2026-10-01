@@ -66,6 +66,14 @@ On Windows in Git Bash, use a path such as:
 ./add-photos.sh /c/Users/your-name/Pictures/shoot/*.JPG
 ```
 
+Remove a photo from the gallery, including its generated full image and thumbnail, with:
+
+```sh
+npm run remove-photo -- IMG_2618.JPG
+```
+
+The command updates `photos.yml` and rebuilds the gallery. It does not delete the camera original.
+
 The script creates a resized and watermarked full image in `images/fulls/`, a gallery thumbnail in
 `images/thumbs/`, adds its paths to `photos.yml`, fills blank metadata fields from the image EXIF,
 sorts the entries by capture date, and builds the browser data file. Run `npm run backfill-exif` to
@@ -98,8 +106,7 @@ npm run build
 ```
 
 Re-running on a photo that is already in `images/fulls/` regenerates it from the original, so the
-watermark is never stamped twice. Remove a photo by deleting both its files and deleting its entry
-from `photos.yml`.
+watermark is never stamped twice.
 
   ## 3. Local preview / testing
 

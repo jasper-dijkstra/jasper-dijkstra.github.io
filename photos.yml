@@ -43,17 +43,6 @@ photos:
     shutter_speed: "1.6 s"
     iso: "ISO 100"
     capture_date: "2025:12:30 11:35:04"
-  - thumbnail: "/images/thumbs/IMG_4536.JPG"
-    photo: "/images/fulls/IMG_4536.JPG"
-    tags: [abstract]
-    description: "karton (2)"
-    location: ""
-    camera: "Canon EOS 250D"
-    objective: "50mm"
-    aperture: "f/3.6"
-    shutter_speed: "1/30 s"
-    iso: "ISO 100"
-    capture_date: "2025:12:30 11:32:05"
   - thumbnail: "/images/thumbs/IMG_4531.jpeg"
     photo: "/images/fulls/IMG_4531.jpeg"
     tags: [wadden, abstract]
