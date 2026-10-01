@@ -143,10 +143,10 @@
     button.textContent = 'Laad meer foto\'s';
     button.addEventListener('click', function (event) {
       event.preventDefault();
-      var currentScrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
       button.blur();
 
-      Array.prototype.slice.call(hiddenItems(), 0, batchSize).forEach(function (item) {
+      var revealedItems = Array.prototype.slice.call(hiddenItems(), 0, batchSize);
+      revealedItems.forEach(function (item) {
         item.style.opacity = '0';
         item.classList.remove('gallery-item-hidden');
         window.requestAnimationFrame(function () {
@@ -157,7 +157,12 @@
       relayout();
 
       window.requestAnimationFrame(function () {
-        window.scrollTo(window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0, currentScrollY);
+        if (revealedItems.length) {
+          var firstNewPhoto = revealedItems.reduce(function (first, item) {
+            return item.getBoundingClientRect().top < first.getBoundingClientRect().top ? item : first;
+          });
+          firstNewPhoto.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
 
       if (hiddenItems().length === 0) {
