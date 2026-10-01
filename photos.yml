@@ -1,4 +1,26 @@
 photos:
+  - thumbnail: "/images/thumbs/IMG_5576.jpeg"
+    photo: "/images/fulls/IMG_5576.jpeg"
+    tags: [detail]
+    description: "Monster(a)"
+    location: ""
+    camera: "Canon EOS 250D"
+    objective: "EF-S18-135mm f/3.5-5.6 IS USM"
+    aperture: "f/8"
+    shutter_speed: "8/5 s"
+    iso: "100"
+    capture_date: "2026:09:29 22:34:52"
+  - thumbnail: "/images/thumbs/IMG_5554.jpeg"
+    photo: "/images/fulls/IMG_5554.jpeg"
+    tags: [abstract]
+    description: "Schaduwen"
+    location: ""
+    camera: "Canon EOS 250D"
+    objective: "EF-S18-135mm f/3.5-5.6 IS USM"
+    aperture: "f/16"
+    shutter_speed: "6/1 s"
+    iso: "100"
+    capture_date: "2026:09:25 19:29:35"
   - thumbnail: "/images/thumbs/IMG_4767.jpeg"
     photo: "/images/fulls/IMG_4767.jpeg"
     tags: [detail, wadden]
